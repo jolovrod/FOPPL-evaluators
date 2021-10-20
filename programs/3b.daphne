@@ -1,0 +1,12 @@
+(defn hmm-step [t states trans-dists likes]
+  (let [z (sample (get trans-dists
+                       (last states)))]
+    (append states z)))
+(let [trans-dists [(discrete [0.10 0.50 0.40])
+                   (discrete [0.20 0.20 0.60])
+                   (discrete [0.15 0.15 0.70])]
+      likes       [(normal -1.0 1.0)
+                   (normal 1.0 1.0)
+                   (normal 0.0 1.0)]
+      states      [(sample (discrete [0.33 0.33 0.34]))]]
+  (loop 16 states hmm-step trans-dists likes))
