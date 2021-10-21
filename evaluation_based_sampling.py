@@ -109,7 +109,7 @@ if __name__ == '__main__':
 
     n = 1000
 
-    for i in range(2,5):
+    for i in range(1,5):
         ast = daphne(['desugar', '-i', 'C:/Users/jlovr/CS532-HW2/programs/{}.daphne'.format(i)])
         samples = []
         for _ in range(n):

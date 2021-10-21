@@ -92,12 +92,6 @@ def hash_map(*x):
 def hash_map_graph(x):
     return {x[i].item(): x[i + 1] for i in range(0, len(x), 2)}
 
-def sample(x):   
-    return x.sample()
-
-def observe(*x):
-    return x[0].sample()
-
 def vector(*x):
     try:
         return torch.stack([*x])
@@ -146,7 +140,6 @@ def standard_env() -> Env:
         'round':   round,
         'symbol?': lambda x: isinstance(x, Symbol),
         'vector':  vector,
-        'sample': sample,
         'first':  first,
         'last':  last,
         'second': lambda x: x[1],
@@ -161,7 +154,6 @@ def standard_env() -> Env:
         'exponential': lambda *x: Exponential(*x),
         'uniform': lambda *x: Uniform(*x),
         'discrete': lambda *x: Discrete(*x),
-        'observe': observe,
         'mat-transpose': lambda x: x.T,
         'mat-tanh': lambda x: x.tanh(),
         'mat-mul': lambda x,y: torch.matmul(x.float(),y.float()),
