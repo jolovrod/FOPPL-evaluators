@@ -43,6 +43,12 @@ def eval(x, env=standard_env()):
         (symbol, exp) = args[0]
         env[symbol] = eval(exp, env)
         return eval(args[1], env)
+    elif op == 'sample':
+        dist = eval(args[0],env)
+        return dist.sample()
+    elif op == 'observe':
+        dist = eval(args[0],env)
+        return dist.sample() 
     else:                        # procedure call
         proc = eval(op, env)
         vals = [x for x in (eval(arg, env) for arg in args)]
@@ -103,7 +109,7 @@ if __name__ == '__main__':
 
     n = 1000
 
-    for i in range(1,5):
+    for i in range(2,5):
         ast = daphne(['desugar', '-i', 'C:/Users/jlovr/CS532-HW2/programs/{}.daphne'.format(i)])
         samples = []
         for _ in range(n):
