@@ -16,7 +16,7 @@ def sampler(i, samples, st_or_gr):
         plt.xlabel("mu")
         plt.ylabel("frequency")
         plt.hist(samples)
-        figstr = "program_"+str(i) + st_or_gr
+        figstr = "histograms/program_"+str(i) + st_or_gr
         plt.savefig(figstr)
 
         print("mu:\n{:.5f} \n{:.5f} \n".format(mean(samples), stdev(samples)))
@@ -34,7 +34,7 @@ def sampler(i, samples, st_or_gr):
             else:
                 plt.xlabel("bias")
             plt.ylabel("frequency")
-            figstr = "program_"+str(i)+"_var_"+str(d)+st_or_gr
+            figstr = "histograms/program_"+str(i)+"_var_"+str(d)+st_or_gr
             plt.savefig(figstr)
 
         means = ["{:.5f}".format(mean(variables[d])) for d in range(len(variables))]
@@ -54,7 +54,7 @@ def sampler(i, samples, st_or_gr):
             plt.bar([0,1,2],counts)
             plt.xlabel("states["+str(d)+"]")
             plt.ylabel("frequency")
-            figstr = "program_"+str(i)+"_var_"+str(d)+st_or_gr
+            figstr = "histograms/program_"+str(i)+"_var_"+str(d)+st_or_gr
             plt.savefig(figstr)
         means = ["{:.5f}".format(mean(variables[d])) for d in range(len(variables))]
         stds = ["{:.5f}".format(stdev(variables[d])) for d in range(len(variables))]
@@ -78,26 +78,15 @@ def sampler(i, samples, st_or_gr):
         for j in range(4):
             print("\n\n",strs[j])
             variables = np.array(objects[j]).T.tolist()
-            # plot one entry from each
-            plt.figure(figsize=(5,4))
-            plt.hist(variables[0])
-            plt.xlabel(strs[j]+"[0]")
-            plt.ylabel("frequency")
-            figstr = "program_"+str(i)+"_"+strs[j]+"_"+str(0)+st_or_gr
-            plt.savefig(figstr)
             for d in range(len(variables)):
                 plt.figure(figsize=(5,4))
                 plt.hist(variables[d])
                 plt.xlabel(strs[j]+"[{:d}]".format(d))
                 plt.ylabel("frequency")
-                figstr = "program_"+str(i)+"_"+strs[j]+"_"+str(d)+st_or_gr
+                figstr = "histograms/program_"+str(i)+"_"+strs[j]+"_"+str(d)+st_or_gr
                 plt.savefig(figstr)
 
             means = ["{:.5f}".format(mean(variables[d])) for d in range(len(variables))]
             stds = ["{:.5f}".format(stdev(variables[d])) for d in range(len(variables))]
             print("mean", means)
             print("stds", stds)
-
-
-
-    # get expecation, standard deviation of each. 

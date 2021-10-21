@@ -28,7 +28,7 @@ def eval(x, env=standard_env()):
     "Evaluate an expression in an environment."
     if isinstance(x, Symbol):    # variable reference
         return env.find(x)[x]
-    elif not isinstance(x, list):# constant 
+    elif not isinstance(x, list): # constant 
         return torch.tensor(x)
     op, *args = x       
     if op == 'if':             # conditional
